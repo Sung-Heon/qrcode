@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>QR Code Generator</title>
+    <style>
+        .container { max-width: 600px; margin: 50px auto; text-align: center; }
+        .qr-container { margin-top: 20px; }
+        input { width: 80%; padding: 10px; margin-bottom: 20px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>QR Code Generator</h1>
+        <input type="text" id="urlInput" placeholder="Enter URL">
+        <button onclick="generateQR()">Generate QR Code</button>
+        <div class="qr-container">
+            <img id="qrImage" style="display: none;">
+        </div>
+    </div>
+
+    <script>
+        async function generateQR() {
+            const url = document.getElementById('urlInput').value;
+            if (!url) return;
+
+            const qrImage = document.getElementById('qrImage');
+            qrImage.src = `/api/qr?url=${encodeURIComponent(url)}`;
+            qrImage.style.display = 'block';
+        }
+    </script>
+</body>
+</html>
